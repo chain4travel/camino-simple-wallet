@@ -11,18 +11,21 @@
             </template>
         </v-main>
         <NetworkLoadingBlock></NetworkLoadingBlock>
+        <Notifications></Notifications>
     </v-app>
 </template>
 <script>
 import Navbar from './components/Navbar'
 import NetworkLoadingBlock from '@/components/misc/NetworkLoadingBlock'
 import UpgradeToAccountModal from '@/components/modals/SaveAccount/UpgradeToAccountModal'
+import Notifications from '@/components/Notifications'
 
 export default {
     components: {
         UpgradeToAccountModal,
         NetworkLoadingBlock,
         Navbar,
+        Notifications,
     },
     async created() {
         // Init language preference
