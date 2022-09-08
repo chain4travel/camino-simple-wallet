@@ -43,8 +43,8 @@ const ifAuthenticated = (to: Route, from: Route, next: Function) => {
 const routes = [
     {
         path: '/',
-        name: 'menu',
-        component: Menu,
+        name: 'home',
+        component: Access,
         beforeEnter: ifNotAuthenticated,
     },
     {

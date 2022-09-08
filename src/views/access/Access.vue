@@ -23,6 +23,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import ToS from '@/components/misc/ToS.vue'
 import DefaultLayout from '@/layout/DefaultLayout.vue'
+import { iUserAccountEncrypted } from '@/store/types'
 @Component({
     metaInfo: () => {
         const description =
@@ -57,8 +58,19 @@ import DefaultLayout from '@/layout/DefaultLayout.vue'
     },
 })
 export default class Access extends Vue {
+    accounts: iUserAccountEncrypted[] = []
     goToWallet() {
         window.open('https://wallet.camino.foundation/')
+    }
+    created() {
+        this.refreshAccounts()
+    }
+    refreshAccounts() {
+        let accountsRaw = localStorage.getItem('accounts')
+        this.accounts = JSON.parse(accountsRaw as string) || []
+    }
+    beforeMount() {
+        if (this.accounts.length === 0) this.$router.push(`/access/mnemonic`)
     }
 }
 </script>

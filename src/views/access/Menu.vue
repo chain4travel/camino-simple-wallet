@@ -42,7 +42,6 @@ export default class Menu extends Vue {
         this.accounts = JSON.parse(accountsRaw) || []
     }
     beforeMount() {
-        console.log(this.accounts)
         if (this.accounts.length === 0) this.$router.push(`/access/mnemonic`)
     }
 }
