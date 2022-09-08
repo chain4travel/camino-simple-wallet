@@ -247,7 +247,8 @@ export default class SimpleWallet extends Vue {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     gap: 40px;
     width: 100vw;
     .content {
@@ -381,6 +382,9 @@ export default class SimpleWallet extends Vue {
 @include main.mobile-device {
     .content {
         padding: 12px;
+    }
+    .header-title {
+        font-size: 33px;
     }
 }
 </style>

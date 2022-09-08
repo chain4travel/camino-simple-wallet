@@ -79,9 +79,9 @@ export default class Access extends Vue {
 
 .access_view {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     flex-direction: column;
 }
 .align-v {
@@ -99,6 +99,9 @@ export default class Access extends Vue {
         height: 48px;
         padding: 12px 20px;
         border-radius: var(--border-radius-lg);
+    }
+    .access_wallet {
+        max-width: 300px;
     }
     .access_wallet,
     .logout {
