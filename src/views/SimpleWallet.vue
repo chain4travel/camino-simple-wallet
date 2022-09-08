@@ -77,16 +77,10 @@
                     </button>
                 </div>
                 <div class="content__item">
-                    <button @click="goToWallet" class="ava_button access_wallet">
-                        Access Wallet
-                    </button>
-                </div>
-                <div class="content__item">
                     <ConfirmLogout ref="logout"></ConfirmLogout>
                     <button @click="logout" class="ava_button logout">
                         {{ $t('logout.button') }}
                     </button>
-                    <!-- <v-btn @click="goToWallet" class="button_secondary">Access Wallet</v-btn> -->
                 </div>
             </div>
         </div>
@@ -231,9 +225,6 @@ export default class SimpleWallet extends Vue {
         } catch (e) {
             return '-'
         }
-    }
-    goToWallet() {
-        window.open('https://wallet.camino.foundation/')
     }
     /*********************  getbalance *********************/
     viewPrintModal() {
