@@ -9,12 +9,19 @@
                 <transition name="fade" mode="out-in">
                     <router-view class="access_card"></router-view>
                 </transition>
+                <div class="content__item">
+                    <button @click="goToWallet" class="ava_button access_wallet">
+                        Access Wallet in Expert Mode
+                    </button>
+                </div>
+                <ToS style="margin: 20px !important"></ToS>
             </div>
         </div>
     </DefaultLayout>
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import ToS from '@/components/misc/ToS.vue'
 import DefaultLayout from '@/layout/DefaultLayout.vue'
 @Component({
     metaInfo: () => {
@@ -46,9 +53,14 @@ import DefaultLayout from '@/layout/DefaultLayout.vue'
     name: 'Access',
     components: {
         DefaultLayout,
+        ToS,
     },
 })
-export default class Access extends Vue {}
+export default class Access extends Vue {
+    goToWallet() {
+        window.open('https://wallet.camino.foundation/')
+    }
+}
 </script>
 <style scoped lang="scss">
 @use '../../styles/main';
@@ -59,6 +71,31 @@ export default class Access extends Vue {}
     align-items: center;
     height: 100vh;
     flex-direction: column;
+}
+.align-v {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.content__item {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .button_secondary {
+        width: 100%;
+        height: 48px;
+        padding: 12px 20px;
+        border-radius: var(--border-radius-lg);
+    }
+    .access_wallet,
+    .logout {
+        width: 90%;
+        height: 48px;
+        padding: 12px 20px;
+        background-color: var(--disabled-bg);
+        border-radius: var(--border-radius-lg);
+    }
 }
 /* .align-v {
     display: flex;

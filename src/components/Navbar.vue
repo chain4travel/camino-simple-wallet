@@ -2,9 +2,9 @@
     <div id="nav">
         <ConfirmLogout ref="logout"></ConfirmLogout>
         <div class="logo">
-            <router-link to="/">
-                <img src="@/assets/camino_logo.png" />
-            </router-link>
+            <!-- <router-link to="/"> -->
+            <img src="@/assets/camino_logo.png" />
+            <!-- </router-link> -->
         </div>
         <v-spacer></v-spacer>
 

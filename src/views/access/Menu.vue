@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <ToS style="margin: 20px !important"></ToS>
+        <!-- <ToS style="margin: 20px !important"></ToS> -->
     </div>
 </template>
 
