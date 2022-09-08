@@ -15,6 +15,9 @@ input {
     }
 }
 
+body {
+    background-color: var(--bg);
+}
 select {
     border-radius: var(--border-radius-sm) !important;
 }
