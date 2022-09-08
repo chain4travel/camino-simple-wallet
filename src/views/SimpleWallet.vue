@@ -247,6 +247,7 @@ export default class SimpleWallet extends Vue {
         flex-direction: column;
         gap: 20px;
         max-width: 100%;
+        min-width: 300px;
     }
     .content__item {
         .button_secondary {
@@ -319,10 +320,8 @@ export default class SimpleWallet extends Vue {
     gap: 30px;
     .balance {
         display: inline-block;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        width: calc(90% - 32px);
+        max-width: calc(98% - 32px);
+        word-wrap: break-word;
     }
 }
 
@@ -373,6 +372,9 @@ export default class SimpleWallet extends Vue {
 @include main.mobile-device {
     .content {
         padding: 12px;
+    }
+    .item_balance {
+        max-width: calc(90% - 32px) !important;
     }
     .header-title {
         font-size: 33px;
