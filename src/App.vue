@@ -64,10 +64,10 @@ export default {
             {
                 vmid: 'og:title',
                 name: 'og:title',
-                content: 'Camino Presale Wizard',
+                content: 'Secure Camino Wallet',
             },
         ],
-        title: 'Camino Presale Wizard',
+        title: 'Secure Camino Wallet',
     },
 }
 </script>
