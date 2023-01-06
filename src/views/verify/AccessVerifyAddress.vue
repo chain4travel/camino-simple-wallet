@@ -1,31 +1,25 @@
 <template>
-    <DefaultLayout>
-        <div class="dashboard">
-            <div class="header-title">
-                <img src="@/assets/logo.svg" />
-                <span>Camino Address Alignment</span>
+    <div class="dashboard">
+        <div class="content">
+            <div class="alignment_explenantion">
+                <span>
+                    Camino heavily extends Avalanche's capabilities to fullfil the needs fot the
+                    travel industry, like introducing a blockchain-based KYC service, enabling
+                    multisignature funds management and allowing a consortium to exist on a layer-1
+                    blockchain.
+                </span>
+                <span>
+                    To ensure the utmost security and safety, as well as fonctionality of the
+                    network, diffrent addresses need to be aigned.
+                </span>
+                <span>To do this, please login using you keyphrase below.</span>
             </div>
-            <div class="content">
-                <div class="alignment_explenantion">
-                    <span>
-                        Camino heavily extends Avalanche's capabilities to fullfil the needs fot the
-                        travel industry, like introducing a blockchain-based KYC service, enabling
-                        multisignature funds management and allowing a consortium to exist on a
-                        layer-1 blockchain.
-                    </span>
-                    <span>
-                        To ensure the utmost security and safety, as well as fonctionality of the
-                        network, diffrent addresses need to be aigned.
-                    </span>
-                    <span>To do this, please login using you keyphrase below.</span>
-                </div>
-                <router-link to="/verifyaddress/mnemonic/" class="menu_option button_primary">
-                    {{ $t('access.but_mnemonic') }}
-                    <v-icon>mdi-list-box-outline</v-icon>
-                </router-link>
-            </div>
+            <router-link to="/verifyaddress/mnemonic" class="menu_option button_primary">
+                {{ $t('access.but_mnemonic') }}
+                <v-icon>mdi-list-box-outline</v-icon>
+            </router-link>
         </div>
-    </DefaultLayout>
+    </div>
 </template>
 
 <script lang="ts">

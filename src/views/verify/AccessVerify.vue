@@ -61,9 +61,9 @@ export default class AccessVerifyPage extends Vue {
         let accountsRaw = localStorage.getItem('accounts')
         this.accounts = JSON.parse(accountsRaw as string) || []
     }
-    beforeMount() {
-        if (this.accounts.length === 0) this.$router.push(`/verifyaddress/mnemonic`)
-    }
+    // beforeMount() {
+    //     if (this.accounts.length === 0) this.$router.push(`/verifyaddress/mnemonic`)
+    // }
 }
 </script>
 <style scoped lang="scss">

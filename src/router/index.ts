@@ -3,8 +3,8 @@ import VueRouter, { Route } from 'vue-router'
 import Home from '../views/Home.vue'
 import SimpleWallet from '../views/SimpleWallet.vue'
 import VerifyAddress from '../views/verify/VerifyAddress.vue'
+import AccessVerify from '../views/verify/AccessVerify.vue'
 import AccessVerifyAddress from '../views/verify/AccessVerifyAddress.vue'
-import AccessVerifyPage from '../views/verify/Access.vue'
 import MnemonicVerify from '../views/verify/Mnemonic.vue'
 
 import Transfer from '@/views/wallet/Transfer.vue'
@@ -84,6 +84,33 @@ const routes = [
         beforeEnter: ifNotAuthenticated,
     },
     {
+        path: '/verifyaddress',
+        component: AccessVerify,
+        children: [
+            {
+                path: '/',
+                name: 'verifyaddress',
+                component: AccessVerifyAddress,
+            },
+            {
+                path: 'mnemonic',
+                name: 'mnemonic',
+                component: Mnemonic,
+            },
+            // {
+            //     path: 'verify',
+            //     name: 'verify',
+            //     component: VerifyAddress,
+            // },
+        ],
+        beforeEnter: ifNotAuthenticated,
+    },
+    {
+        path: '/verifyaddress/verify',
+        component: VerifyAddress,
+        beforeEnter: ifAuthenticated,
+    },
+    {
         path: '/wallet',
         children: [
             {
@@ -126,23 +153,6 @@ const routes = [
         ],
         component: SimpleWallet,
         beforeEnter: ifAuthenticated,
-    },
-    {
-        path: '/verifyaddress',
-        component: AccessVerifyAddress,
-        children: [
-            {
-                path: 'mnemonic',
-                name: 'mnemonic',
-                component: MnemonicVerify,
-            },
-            {
-                path: 'verify',
-                name: 'verify',
-                component: VerifyAddress,
-            },
-        ],
-        beforeEnter: ifNotAuthenticated,
     },
 ]
 
