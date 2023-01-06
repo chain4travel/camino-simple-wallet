@@ -4,7 +4,7 @@
             <div class="align-v">
                 <div class="header-title">
                     <img src="@/assets/logo.svg" />
-                    <span>Camino Address Alignment</span>
+                    <span>{{ $t('verifyAddress.title') }}</span>
                 </div>
                 <transition name="fade" mode="out-in">
                     <router-view class="access_card"></router-view>

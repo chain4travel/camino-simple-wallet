@@ -2,17 +2,9 @@
     <div class="dashboard">
         <div class="content">
             <div class="alignment_explenantion">
-                <span>
-                    Camino heavily extends Avalanche's capabilities to fullfil the needs fot the
-                    travel industry, like introducing a blockchain-based KYC service, enabling
-                    multisignature funds management and allowing a consortium to exist on a layer-1
-                    blockchain.
-                </span>
-                <span>
-                    To ensure the utmost security and safety, as well as fonctionality of the
-                    network, diffrent addresses need to be aigned.
-                </span>
-                <span>To do this, please login using you keyphrase below.</span>
+                <span>{{ $t('verifyAddress.alignment.top_desc1') }}</span>
+                <span>{{ $t('verifyAddress.alignment.top_desc2') }}</span>
+                <span>{{ $t('verifyAddress.alignment.top_desc3') }}</span>
             </div>
             <router-link to="/verifyaddress/mnemonic" class="menu_option button_primary">
                 {{ $t('access.but_mnemonic') }}

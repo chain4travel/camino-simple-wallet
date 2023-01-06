@@ -5,6 +5,7 @@ import VerifyAddress from '../views/verify/VerifyAddress.vue'
 import AccessVerify from '../views/verify/AccessVerify.vue'
 import AccessVerifyAddress from '../views/verify/AccessVerifyAddress.vue'
 import MnemonicVerify from '../views/verify/MnemonicVerify.vue'
+import Success from '../views/verify/Success.vue'
 
 import Transfer from '@/views/wallet/Transfer.vue'
 import ManageKeys from '@/views/wallet/ManageKeys.vue'
@@ -91,6 +92,11 @@ const routes = [
                 path: 'mnemonic',
                 name: 'mnemonic',
                 component: MnemonicVerify,
+            },
+            {
+                path: 'success',
+                name: 'success',
+                component: Success,
             },
         ],
         beforeEnter: ifNotAuthenticated,

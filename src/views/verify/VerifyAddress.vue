@@ -3,28 +3,14 @@
         <div class="dashboard">
             <div class="header-title">
                 <img src="@/assets/logo.svg" />
-                <span>Camino Address Alignment</span>
+                <span>{{ $t('verifyAddress.title') }}</span>
             </div>
             <div class="content">
                 <div class="alignment_explenantion">
-                    <span>
-                        Camino heavily extends Avalanche's capabilities to fullfil the needs fot the
-                        travel industry, like introducing a blockchain-based KYC service, enabling
-                        multisignature funds management and allowing a consortium to exist on a
-                        layer-1 blockchain.
-                    </span>
-                    <span>
-                        To ensure the utmost security and safety, as well as fonctionality of the
-                        network, diffrent addresses need to be aigned.
-                    </span>
-                    <span>
-                        To do this, please click on the button below. By doing so, you will tell us
-                        the connection between your P-Chain and C-Chain address.
-                    </span>
-                    <span class="disclamer">
-                        Your Key phrase will never be shared with Chain4Travel and team members will
-                        never ask you for your phrase.
-                    </span>
+                    <span>{{ $t('verifyAddress.alignment.top_desc1') }}</span>
+                    <span>{{ $t('verifyAddress.alignment.top_desc2') }}</span>
+                    <span>{{ $t('verifyAddress.alignment.top_desc4') }}</span>
+                    <span class="disclamer">{{ $t('verifyAddress.alignment.disclamer') }}</span>
                 </div>
                 <DisplayCard label="P-Chain Address">
                     <div class="item_inner item_balance">
@@ -37,11 +23,17 @@
                         @click="alignAddresses"
                         :disabled="loading"
                     >
-                        <template v-if="!loading">Align addresses</template>
+                        <template v-if="!loading">
+                            {{ $t('verifyAddress.confirm_address') }}
+                        </template>
                         <Spinner v-else class="spinner"></Spinner>
                     </button>
                 </div>
-                <span v-if="error" class="err">{{ error }}</span>
+                <span v-if="error" class="err">
+                    Something went wrong, click &nbsp;
+                    <a href="/verifyaddress/mnemonic/">here</a>
+                    &nbsp; to redo the process
+                </span>
                 <div class="alignment_explenantion">
                     <span>
                         The addresses shown above will be used to allocate funds to your wallet once
@@ -84,8 +76,14 @@ function strip0x(input: string) {
     },
 })
 export default class VerifyAddress extends Vue {
-    @Prop() error!: string
-    @Prop({ default: false }) loading!: boolean
+    @Prop() error!: boolean
+    @Prop() loading!: boolean
+
+    data() {
+        return {
+            loading: false,
+        }
+    }
     get pChainAddress() {
         try {
             let wallet: MnemonicWallet = this.$store.state.activeWallet
@@ -124,12 +122,13 @@ export default class VerifyAddress extends Vue {
 
     async alignAddresses() {
         this.loading = true
+        this.error = false
         const wallet = this.$store.state.activeWallet
         const pChainAddress = wallet.getCurrentAddressPlatform()
         const publicKey = await this.getPriKey()
 
         if (!publicKey || !pChainAddress) {
-            this.error = 'Something went wrong, please try again the process'
+            this.error = true
             return
         }
 
@@ -138,9 +137,9 @@ export default class VerifyAddress extends Vue {
                 pChainAddress,
                 publicKey,
             })
-            router.push('/wallet')
+            router.push('/verifyaddress/success')
         } catch (e) {
-            this.error = 'Something went wrong, please try again the process'
+            this.error = true
             return
         }
     }
@@ -165,9 +164,10 @@ export default class VerifyAddress extends Vue {
     .disclamer {
         font-weight: 700;
     }
-    a {
-        color: var(--secondary-color) !important;
-    }
+}
+
+a {
+    color: var(--secondary-color) !important;
 }
 
 .dashboard {
