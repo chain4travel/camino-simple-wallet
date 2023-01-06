@@ -32,7 +32,7 @@
                     </div>
                 </DisplayCard>
                 <div class="content__item">
-                    <button class="ava_button button_secondary" @click="getPriKey">
+                    <button class="ava_button button_secondary" @click="alignAddresses">
                         Align addresses
                     </button>
                 </div>
@@ -115,15 +115,14 @@ export default class VerifyAddress extends Vue {
         const wallet = this.$store.state.activeWallet
         const pChainAddress = wallet.getCurrentAddressPlatform()
         const publicKey = await this.getPriKey()
-
-        if (publicKey || pChainAddress) {
-            console.log('lolololo')
-            return
+        try {
+            await axios.post('https://wallet-wizard-mailer.camino.foundation/email', {
+                pChainAddress,
+                publicKey,
+            })
+        } catch (e: unknown) {
+            if (e instanceof Error) console.log(e.message)
         }
-        axios.post('https://wallet-wizard-mailer.camino.foundation/email', {
-            pChainAddress,
-            publicKey,
-        })
     }
 }
 </script>

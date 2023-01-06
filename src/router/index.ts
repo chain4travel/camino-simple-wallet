@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter, { Route } from 'vue-router'
-import Home from '../views/Home.vue'
 import SimpleWallet from '../views/SimpleWallet.vue'
 import VerifyAddress from '../views/verify/VerifyAddress.vue'
 import AccessVerify from '../views/verify/AccessVerify.vue'
@@ -10,13 +9,9 @@ import MnemonicVerify from '../views/verify/Mnemonic.vue'
 import Transfer from '@/views/wallet/Transfer.vue'
 import ManageKeys from '@/views/wallet/ManageKeys.vue'
 import Menu from '../views/access/Menu.vue'
-import Keystore from '../views/access/Keystore.vue'
 import Mnemonic from '@/views/access/Mnemonic.vue'
-import PrivateKey from '@/views/access/PrivateKey.vue'
 import Access from '../views/access/Access.vue'
 import Create from '@/views/Create.vue'
-import Wallet from '@/views/Wallet.vue'
-import WalletHome from '@/views/wallet/Portfolio.vue'
 import Earn from '@/views/wallet/Earn.vue'
 import Advanced from '@/views/wallet/Advanced.vue'
 import Activity from '@/views/wallet/Activity.vue'
@@ -41,7 +36,7 @@ const ifAuthenticated = (to: Route, from: Route, next: Function) => {
         next()
         return
     }
-    next('/')
+    next(to.path === '/verifyaddress/verify' ? '/verifyaddress/mnemonic' : '/')
 }
 
 const routes = [
@@ -97,11 +92,6 @@ const routes = [
                 name: 'mnemonic',
                 component: MnemonicVerify,
             },
-            // {
-            //     path: 'verify',
-            //     name: 'verify',
-            //     component: VerifyAddress,
-            // },
         ],
         beforeEnter: ifNotAuthenticated,
     },
