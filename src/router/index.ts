@@ -2,6 +2,10 @@ import Vue from 'vue'
 import VueRouter, { Route } from 'vue-router'
 import Home from '../views/Home.vue'
 import SimpleWallet from '../views/SimpleWallet.vue'
+import VerifyAddress from '../views/verify/VerifyAddress.vue'
+import AccessVerifyAddress from '../views/verify/AccessVerifyAddress.vue'
+import AccessVerifyPage from '../views/verify/Access.vue'
+import MnemonicVerify from '../views/verify/Mnemonic.vue'
 
 import Transfer from '@/views/wallet/Transfer.vue'
 import ManageKeys from '@/views/wallet/ManageKeys.vue'
@@ -122,6 +126,23 @@ const routes = [
         ],
         component: SimpleWallet,
         beforeEnter: ifAuthenticated,
+    },
+    {
+        path: '/verifyaddress',
+        component: AccessVerifyAddress,
+        children: [
+            {
+                path: 'mnemonic',
+                name: 'mnemonic',
+                component: MnemonicVerify,
+            },
+            {
+                path: 'verify',
+                name: 'verify',
+                component: VerifyAddress,
+            },
+        ],
+        beforeEnter: ifNotAuthenticated,
     },
 ]
 
