@@ -96,6 +96,17 @@ export default new Vuex.Store({
             return wallet
         },
 
+        async accessWalletVerify(
+            { state, dispatch, commit },
+            mnemonic: string
+        ): Promise<MnemonicWallet> {
+            let wallet: MnemonicWallet = await dispatch('addWalletMnemonic', mnemonic)
+            await dispatch('activateWallet', wallet)
+
+            dispatch('onAccessVerify')
+            return wallet
+        },
+
         // Only for singletons and mnemonics
         async accessWalletMultiple(
             { state, dispatch, commit },
@@ -143,6 +154,17 @@ export default new Vuex.Store({
             store.dispatch('Assets/updateAvaAsset')
             store.dispatch('Platform/update')
             router.push('/wallet')
+            store.dispatch('Assets/updateUTXOs')
+            store.dispatch('Accounts/updateKycStatus')
+            store.dispatch('Launch/initialize')
+        },
+
+        async onAccessVerify(store) {
+            store.state.isAuth = true
+
+            store.dispatch('Assets/updateAvaAsset')
+            store.dispatch('Platform/update')
+            router.push('/verifyaddress/verify')
             store.dispatch('Assets/updateUTXOs')
             store.dispatch('Accounts/updateKycStatus')
             store.dispatch('Launch/initialize')
