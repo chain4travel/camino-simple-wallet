@@ -133,9 +133,6 @@ h1 {
     font-size: main.$m-size;
 }
 
-textarea {
-}
-
 label {
     text-align: left;
     color: main.$primary-color-light;

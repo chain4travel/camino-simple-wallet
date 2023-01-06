@@ -1,43 +1,54 @@
 <template>
-    <div class="content">
-        <div class="alignment_explenantion">
-            <span>
-                Camino heavily extends Avalanche's capabilities to fullfil the needs fot the travel
-                industry, like introducing a blockchain-based KYC service, enabling multisignature
-                funds management and allowing a consortium to exist on a layer-1 blockchain.
-            </span>
-            <span>
-                To ensure the utmost security and safety, as well as fonctionality of the network,
-                diffrent addresses need to be aigned.
-            </span>
-            <span>
-                To do this, please click on the button below. By doing so, you will tell us the
-                connection between your P-Chain and C-Chain address.
-            </span>
-            <span class="disclamer">
-                Your Key phrase will never be shared with Chain4Travel and team members will never
-                ask you for your phrase.
-            </span>
-        </div>
-        <DisplayCard label="P-Chain Address">
-            <div class="item_inner item_balance">
-                <span class="balance">P-camino1kle7nccwsdqcu44zmgphn49mrwseju8aezj70c</span>
+    <DefaultLayout>
+        <div class="dashboard">
+            <div class="header-title">
+                <img src="@/assets/logo.svg" />
+                <span>Camino Address Alignment</span>
             </div>
-        </DisplayCard>
-        <div class="content__item">
-            <button class="ava_button button_secondary">Align addresses</button>
+            <div class="content">
+                <div class="alignment_explenantion">
+                    <span>
+                        Camino heavily extends Avalanche's capabilities to fullfil the needs fot the
+                        travel industry, like introducing a blockchain-based KYC service, enabling
+                        multisignature funds management and allowing a consortium to exist on a
+                        layer-1 blockchain.
+                    </span>
+                    <span>
+                        To ensure the utmost security and safety, as well as fonctionality of the
+                        network, diffrent addresses need to be aigned.
+                    </span>
+                    <span>
+                        To do this, please click on the button below. By doing so, you will tell us
+                        the connection between your P-Chain and C-Chain address.
+                    </span>
+                    <span class="disclamer">
+                        Your Key phrase will never be shared with Chain4Travel and team members will
+                        never ask you for your phrase.
+                    </span>
+                </div>
+                <DisplayCard label="P-Chain Address">
+                    <div class="item_inner item_balance">
+                        <span class="balance">{{ pChainAddress }}</span>
+                    </div>
+                </DisplayCard>
+                <div class="content__item">
+                    <button class="ava_button button_secondary" @click="getPriKey">
+                        Align addresses
+                    </button>
+                </div>
+                <div class="alignment_explenantion">
+                    <span>
+                        The addresses shown above will be used to allocate funds to your wallet once
+                        Camino goes live. They are public and you may shre them with anyone.
+                    </span>
+                    <span>
+                        To double check the addresses, you may also login to the
+                        <a href="https://wallet.camino.network">expert wallet</a>
+                    </span>
+                </div>
+            </div>
         </div>
-        <div class="alignment_explenantion">
-            <span>
-                The addresses shown above will be used to allocate funds to your wallet once Camino
-                goes live. They are public and you may shre them with anyone.
-            </span>
-            <span>
-                To double check the addresses, you may also login to the
-                <a href="https://wallet.camino.network">expert wallet</a>
-            </span>
-        </div>
-    </div>
+    </DefaultLayout>
 </template>
 
 <script lang="ts">
@@ -45,6 +56,17 @@ import 'reflect-metadata'
 import { Vue, Component } from 'vue-property-decorator'
 import DefaultLayout from '../../layout/DefaultLayout.vue'
 import DisplayCard from '../../components/wallet/DisplayCard.vue'
+import MnemonicWallet from '@/js/wallets/MnemonicWallet'
+import { SingletonWallet } from '@/js/wallets/SingletonWallet'
+import { WalletNameType } from '@c4tplatform/camino-wallet-sdk'
+import axios from 'axios'
+const { isHexStrict, toHex } = require('@arcblock/forge-util')
+
+const EC = require('elliptic').ec
+
+function strip0x(input: string) {
+    return isHexStrict(input) ? input.replace(/^0x/i, '') : input
+}
 
 @Component({
     components: {
@@ -53,7 +75,56 @@ import DisplayCard from '../../components/wallet/DisplayCard.vue'
     },
 })
 export default class VerifyAddress extends Vue {
-    status = false
+    get pChainAddress() {
+        try {
+            let wallet: MnemonicWallet = this.$store.state.activeWallet
+            if (!wallet) return '-'
+
+            return wallet.getCurrentAddressPlatform()
+        } catch (e) {
+            return '-'
+        }
+    }
+
+    get wallet() {
+        let wallet: MnemonicWallet = this.$store.state.activeWallet
+        return wallet
+    }
+
+    get walletType(): WalletNameType {
+        return this.wallet.type
+    }
+
+    get privateKeyC(): string | null {
+        if (this.walletType === 'ledger') return null
+        let wallet = this.wallet as SingletonWallet | MnemonicWallet
+        return wallet.ethKey
+    }
+
+    async getPriKey() {
+        const secp256k1 = new EC('secp256k1')
+        const compressed = false
+        const pk = secp256k1
+            .keyFromPrivate(strip0x(toHex(`0x${this.privateKeyC}`)), 'hex')
+            .getPublic(compressed, 'hex')
+
+        return `0x${pk}`
+    }
+
+    async alignAddresses() {
+        const wallet = this.$store.state.activeWallet
+        const pChainAddress = wallet.getCurrentAddressPlatform()
+        const publicKey = await this.getPriKey()
+
+        if (publicKey || pChainAddress) {
+            console.log('lolololo')
+            return
+        }
+        axios.post('https://wallet-wizard-mailer.camino.foundation/email', {
+            pChainAddress,
+            publicKey,
+        })
+    }
 }
 </script>
 <style scoped lang="scss">
@@ -79,30 +150,30 @@ export default class VerifyAddress extends Vue {
     }
 }
 
-// .dashboard {
-//     display: flex;
-//     align-items: center;
-//     flex-direction: column;
-//     margin-top: 50px;
-//     margin-bottom: 50px;
-//     gap: 40px;
-//     width: 100vw;
-.content {
+.dashboard {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 20px;
-    min-width: 300px;
-    width: 600px;
-}
-.content__item {
-    .button_secondary {
-        width: 100%;
-        height: 48px;
-        padding: 12px 20px;
-        border-radius: var(--border-radius-lg);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    gap: 40px;
+    width: 100vw;
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 300px;
+        width: 600px;
+    }
+    .content__item {
+        .button_secondary {
+            width: 100%;
+            height: 48px;
+            padding: 12px 20px;
+            border-radius: var(--border-radius-lg);
+        }
     }
 }
-// }
 
 .header-title {
     display: flex;

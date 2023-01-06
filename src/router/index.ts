@@ -95,7 +95,7 @@ const routes = [
             {
                 path: 'mnemonic',
                 name: 'mnemonic',
-                component: Mnemonic,
+                component: MnemonicVerify,
             },
             // {
             //     path: 'verify',
