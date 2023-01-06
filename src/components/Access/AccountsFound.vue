@@ -77,7 +77,6 @@ h3 {
 //    transition-duration: 0.1s;
 //    transition-timing-function: ease-in;
 //    border-radius: 6px;
-//    font-family: 'DM Sans', sans-serif;
 //    font-weight: 700 !important;
 //    text-transform: uppercase;
 //    padding: 8px 18px;
