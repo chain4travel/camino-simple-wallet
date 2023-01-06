@@ -56,6 +56,7 @@ export default class VerifyAddress extends Vue {
     line-height: 20px;
     gap: 15px;
     color: var(--primary-color);
+    text-align: left;
     & > span {
         font-size: 16px;
         font-weight: 500;
