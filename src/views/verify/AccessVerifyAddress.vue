@@ -10,6 +10,7 @@
                 {{ $t('access.but_mnemonic') }}
                 <v-icon>mdi-list-box-outline</v-icon>
             </router-link>
+            <span class="disclamer">{{ $t('verifyAddress.alignment.bottom_desc1') }}</span>
         </div>
     </div>
 </template>
@@ -62,6 +63,10 @@ export default class VerifyAddress extends Vue {
     a {
         color: var(--secondary-color) !important;
     }
+}
+
+.disclamer {
+    font-weight: 700;
 }
 
 .dashboard {

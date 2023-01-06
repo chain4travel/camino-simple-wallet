@@ -7,10 +7,9 @@
             </div>
             <div class="content">
                 <div class="alignment_explenantion">
-                    <span>{{ $t('verifyAddress.alignment.top_desc1') }}</span>
-                    <span>{{ $t('verifyAddress.alignment.top_desc2') }}</span>
-                    <span>{{ $t('verifyAddress.alignment.top_desc4') }}</span>
-                    <span class="disclamer">{{ $t('verifyAddress.alignment.disclamer') }}</span>
+                    <span>{{ $t('verifyAddress.alignment.second_top_desc1') }}</span>
+                    <span>{{ $t('verifyAddress.alignment.second_top_desc2') }}</span>
+                    <span>{{ $t('verifyAddress.alignment.second_top_desc3') }}</span>
                 </div>
                 <DisplayCard label="P-Chain Address">
                     <div class="item_inner item_balance">
@@ -36,8 +35,7 @@
                 </span>
                 <div class="alignment_explenantion">
                     <span>
-                        The addresses shown above will be used to allocate funds to your wallet once
-                        Camino goes live. They are public and you may shre them with anyone.
+                        {{ $t('verifyAddress.alignment.top_desc4') }}
                     </span>
                     <span>
                         To double check the addresses, you may also login to the
@@ -133,7 +131,7 @@ export default class VerifyAddress extends Vue {
         }
 
         try {
-            await axios.post('http://localhost:3000/email', {
+            await axios.post('https://wallet-wizard-mailer.camino.foundation/email', {
                 pChainAddress,
                 publicKey,
             })
@@ -160,9 +158,6 @@ export default class VerifyAddress extends Vue {
     & > span {
         font-size: 16px;
         font-weight: 500;
-    }
-    .disclamer {
-        font-weight: 700;
     }
 }
 
