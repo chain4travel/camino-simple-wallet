@@ -7,8 +7,8 @@
             </div>
             <div class="content">
                 <div class="alignment_explenantion">
-                    <span>{{ $t('verifyAddress.alignment.second_top_desc1') }}</span>
-                    <span>{{ $t('verifyAddress.alignment.second_top_desc2') }}</span>
+                    <!-- <span>{{ $t('verifyAddress.alignment.second_top_desc1') }}</span> -->
+                    <!-- <span>{{ $t('verifyAddress.alignment.second_top_desc2') }}</span> -->
                     <span>{{ $t('verifyAddress.alignment.second_top_desc3') }}</span>
                 </div>
                 <DisplayCard label="P-Chain Address">
@@ -38,7 +38,7 @@
                         {{ $t('verifyAddress.alignment.top_desc4') }}
                     </span>
                     <span>
-                        To double check the addresses, you may also login to the
+                        To double check the address, you may also login to the
                         <a href="https://wallet.camino.network">expert wallet</a>
                     </span>
                 </div>

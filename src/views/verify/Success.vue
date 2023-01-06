@@ -2,8 +2,8 @@
     <div class="success_body">
         <img src="@/assets/success.svg" alt="" />
         <div class="success_content">
-            <h1>Address verification was succefull</h1>
-            <span>You may close this window now</span>
+            <h1>Address verification was successful.</h1>
+            <span>You may close this window now.</span>
         </div>
     </div>
 </template>

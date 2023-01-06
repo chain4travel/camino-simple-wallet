@@ -93,13 +93,20 @@ const routes = [
                 name: 'mnemonic',
                 component: MnemonicVerify,
             },
-            {
-                path: 'success',
-                name: 'success',
-                component: Success,
-            },
         ],
         beforeEnter: ifNotAuthenticated,
+    },
+    {
+        path: '/verifyaddress',
+        component: AccessVerify,
+        children: [
+            {
+                path: '/verifyaddress/success',
+                component: Success,
+                beforeEnter: ifAuthenticated,
+            },
+        ],
+        beforeEnter: ifAuthenticated,
     },
     {
         path: '/verifyaddress/verify',
