@@ -104,23 +104,25 @@ export default class AccessVerifyPage extends Vue {
         border-radius: var(--border-radius-lg);
     }
 }
-/* .align-v {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 .header-title {
     display: flex;
     align-items: center;
-    justify-content: center;
     color: var(--primary-color);
     gap: 10px;
-    font-size: 47px;
+    font-size: 44px;
     font-weight: 700;
     line-height: 47px;
-    margin-bottom: 40px;
 }
 .access_card {
     text-align: center;
+}
+@include main.mobile-device {
+    .header-title {
+        font-size: 33px;
+        flex-direction: column;
+        span {
+            text-align: center;
+        }
+    }
 }
 </style>
