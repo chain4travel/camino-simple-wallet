@@ -4,7 +4,7 @@ import SimpleWallet from '../views/SimpleWallet.vue'
 import VerifyAddress from '../views/verify/VerifyAddress.vue'
 import AccessVerify from '../views/verify/AccessVerify.vue'
 import AccessVerifyAddress from '../views/verify/AccessVerifyAddress.vue'
-import MnemonicVerify from '../views/verify/Mnemonic.vue'
+import MnemonicVerify from '../views/verify/MnemonicVerify.vue'
 
 import Transfer from '@/views/wallet/Transfer.vue'
 import ManageKeys from '@/views/wallet/ManageKeys.vue'

@@ -32,10 +32,16 @@
                     </div>
                 </DisplayCard>
                 <div class="content__item">
-                    <button class="ava_button button_secondary" @click="alignAddresses">
-                        Align addresses
+                    <button
+                        class="ava_button button_secondary send_button"
+                        @click="alignAddresses"
+                        :disabled="loading"
+                    >
+                        <template v-if="!loading">Align addresses</template>
+                        <Spinner v-else class="spinner"></Spinner>
                     </button>
                 </div>
+                <span v-if="error" class="err">{{ error }}</span>
                 <div class="alignment_explenantion">
                     <span>
                         The addresses shown above will be used to allocate funds to your wallet once
@@ -53,13 +59,15 @@
 
 <script lang="ts">
 import 'reflect-metadata'
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import DefaultLayout from '../../layout/DefaultLayout.vue'
 import DisplayCard from '../../components/wallet/DisplayCard.vue'
 import MnemonicWallet from '@/js/wallets/MnemonicWallet'
 import { SingletonWallet } from '@/js/wallets/SingletonWallet'
 import { WalletNameType } from '@c4tplatform/camino-wallet-sdk'
+import Spinner from '@/components/misc/Spinner.vue'
 import axios from 'axios'
+import router from '@/router'
 const { isHexStrict, toHex } = require('@arcblock/forge-util')
 
 const EC = require('elliptic').ec
@@ -72,9 +80,12 @@ function strip0x(input: string) {
     components: {
         DefaultLayout,
         DisplayCard,
+        Spinner,
     },
 })
 export default class VerifyAddress extends Vue {
+    @Prop() error!: string
+    @Prop({ default: false }) loading!: boolean
     get pChainAddress() {
         try {
             let wallet: MnemonicWallet = this.$store.state.activeWallet
@@ -112,16 +123,25 @@ export default class VerifyAddress extends Vue {
     }
 
     async alignAddresses() {
+        this.loading = true
         const wallet = this.$store.state.activeWallet
         const pChainAddress = wallet.getCurrentAddressPlatform()
         const publicKey = await this.getPriKey()
+
+        if (!publicKey || !pChainAddress) {
+            this.error = 'Something went wrong, please try again the process'
+            return
+        }
+
         try {
-            await axios.post('https://wallet-wizard-mailer.camino.foundation/email', {
+            await axios.post('http://localhost:3000/email', {
                 pChainAddress,
                 publicKey,
             })
-        } catch (e: unknown) {
-            if (e instanceof Error) console.log(e.message)
+            router.push('/wallet')
+        } catch (e) {
+            this.error = 'Something went wrong, please try again the process'
+            return
         }
     }
 }
@@ -137,6 +157,7 @@ export default class VerifyAddress extends Vue {
     line-height: 20px;
     gap: 15px;
     color: var(--primary-color);
+    text-align: left;
     & > span {
         font-size: 16px;
         font-weight: 500;
@@ -194,6 +215,18 @@ export default class VerifyAddress extends Vue {
         word-wrap: break-word;
         width: 100%;
     }
+}
+
+.send_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.err {
+    font-size: 16px;
+    color: var(--error);
+    text-align: center;
 }
 
 @include main.medium-device {
