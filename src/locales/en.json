@@ -99,7 +99,7 @@
         }
     },
     "verifyAddress": {
-        "title": "Camino Address Alignment",
+        "title": "Camino Address Verification",
         "confirm_address": "Verify address",
         "alignment": {
             "top_desc1": "We're very excited to finally start Camino, the blockchain solution for the travel industry, in a few weeks. However, before we go live and transfer your Camino tokens to your wallet, we need you to verify your wallet access again. This is a simple but necessary security measure which will only take one minute.",
