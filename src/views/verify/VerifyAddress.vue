@@ -7,13 +7,16 @@
             </div>
             <div class="content">
                 <div class="alignment_explenantion">
-                    <!-- <span>{{ $t('verifyAddress.alignment.second_top_desc1') }}</span> -->
-                    <!-- <span>{{ $t('verifyAddress.alignment.second_top_desc2') }}</span> -->
                     <span>{{ $t('verifyAddress.alignment.second_top_desc3') }}</span>
                 </div>
                 <DisplayCard label="P-Chain Address">
                     <div class="item_inner item_balance">
                         <span class="balance">{{ pChainAddress }}</span>
+                    </div>
+                </DisplayCard>
+                <DisplayCard label="Public Key">
+                    <div class="item_inner item_balance">
+                        <span class="balance">{{ publicKey }}</span>
                     </div>
                 </DisplayCard>
                 <div class="content__item">
@@ -34,12 +37,8 @@
                     &nbsp; to redo the process
                 </span>
                 <div class="alignment_explenantion">
-                    <span>
+                    <span class="confirmation">
                         {{ $t('verifyAddress.alignment.top_desc4') }}
-                    </span>
-                    <span>
-                        To double check the address, you may also login to the
-                        <a href="https://wallet.camino.network">expert wallet</a>
                     </span>
                 </div>
             </div>
@@ -76,6 +75,13 @@ function strip0x(input: string) {
 export default class VerifyAddress extends Vue {
     @Prop() error!: boolean
     @Prop() loading!: boolean
+    @Prop() publicKey!: string
+
+    // before mount get public key
+    async beforeMount() {
+        const publicKey = await this.getPriKey()
+        this.publicKey = publicKey
+    }
 
     data() {
         return {
@@ -156,8 +162,12 @@ export default class VerifyAddress extends Vue {
     color: var(--primary-color);
     text-align: left;
     & > span {
-        font-size: 16px;
+        font-size: 18px !important;
         font-weight: 500;
+        line-height: 1.5;
+    }
+    .confirmation {
+        font-size: 15px !important;
     }
 }
 
@@ -173,6 +183,7 @@ a {
     margin-bottom: 50px;
     gap: 40px;
     width: 100vw;
+    max-width: 650px;
     .content {
         display: flex;
         flex-direction: column;
@@ -198,6 +209,8 @@ a {
     font-size: 44px;
     font-weight: 700;
     line-height: 47px;
+    flex-direction: column;
+    text-align: center;
 }
 
 .item_balance {

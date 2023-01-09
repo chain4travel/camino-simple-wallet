@@ -71,7 +71,6 @@ export default class AccessVerifyPage extends Vue {
 
 .access_view {
     display: flex;
-    // justify-content: center;
     align-items: center;
     height: 100%;
     flex-direction: column;
@@ -80,6 +79,7 @@ export default class AccessVerifyPage extends Vue {
     display: flex;
     align-items: center;
     flex-direction: column;
+    max-width: 650px;
 }
 .content__item {
     margin-top: 50px;
@@ -112,6 +112,9 @@ export default class AccessVerifyPage extends Vue {
     font-size: 44px;
     font-weight: 700;
     line-height: 47px;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 20px;
 }
 .access_card {
     text-align: center;

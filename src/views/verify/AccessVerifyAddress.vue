@@ -3,12 +3,18 @@
         <div class="content">
             <div class="alignment_explenantion">
                 <span>{{ $t('verifyAddress.alignment.top_desc1') }}</span>
+                <br />
+                <br />
                 <span>{{ $t('verifyAddress.alignment.top_desc2') }}</span>
+                <br />
+                <br />
                 <span>{{ $t('verifyAddress.alignment.top_desc3') }}</span>
             </div>
-            <router-link to="/verifyaddress/mnemonic" class="menu_option button_primary">
-                {{ $t('access.but_mnemonic') }}
-                <v-icon>mdi-list-box-outline</v-icon>
+            <router-link to="/verifyaddress/mnemonic" class="menu_option button_secondary">
+                <span>
+                    {{ $t('access.but_mnemonic') }}
+                </span>
+                <!-- <v-icon>mdi-list-box-outline</v-icon> -->
             </router-link>
             <span class="disclamer">{{ $t('verifyAddress.alignment.bottom_desc1') }}</span>
         </div>
@@ -36,14 +42,9 @@ export default class VerifyAddress extends Vue {
 @use '/src/components/Access/menu';
 
 .menu_option {
-    justify-content: space-between;
+    display: flex;
     align-items: center;
-    img {
-        width: 24px;
-        height: 24px;
-        margin: 0;
-        object-fit: contain;
-    }
+    justify-content: center;
 }
 .v-icon {
     color: var(--icon-color-light);
@@ -57,10 +58,20 @@ export default class VerifyAddress extends Vue {
     gap: 15px;
     color: var(--primary-color);
     text-align: left;
-    & > span {
-        font-size: 16px;
-        font-weight: 500;
-    }
+
+    text-align: left;
+    background-color: var(--bg-light-2);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 30px;
+    font-size: 18px !important;
+    padding: 25px;
+    font-weight: 500;
+    line-height: 1.5;
+
+    // & > span {
+    //     font-size: 16px;
+    //     font-weight: 500;
+    // }
     a {
         color: var(--secondary-color) !important;
     }
