@@ -3,11 +3,7 @@
         <div class="content">
             <div class="alignment_explenantion">
                 <span>{{ $t('verifyAddress.alignment.top_desc1') }}</span>
-                <br />
-                <br />
                 <span>{{ $t('verifyAddress.alignment.top_desc2') }}</span>
-                <br />
-                <br />
                 <span>{{ $t('verifyAddress.alignment.top_desc3') }}</span>
             </div>
             <router-link to="/verifyaddress/mnemonic" class="menu_option button_secondary">
@@ -55,7 +51,7 @@ export default class VerifyAddress extends Vue {
     margin-top: 20px;
     margin-bottom: 20px;
     line-height: 20px;
-    gap: 15px;
+    gap: 18px;
     color: var(--primary-color);
     text-align: left;
 
@@ -68,10 +64,6 @@ export default class VerifyAddress extends Vue {
     font-weight: 500;
     line-height: 1.5;
 
-    // & > span {
-    //     font-size: 16px;
-    //     font-weight: 500;
-    // }
     a {
         color: var(--secondary-color) !important;
     }
