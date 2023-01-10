@@ -183,7 +183,7 @@ a {
     margin-bottom: 50px;
     gap: 40px;
     width: 100vw;
-    max-width: 650px;
+    max-width: 700px;
     .content {
         display: flex;
         flex-direction: column;

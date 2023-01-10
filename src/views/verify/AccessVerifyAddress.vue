@@ -127,6 +127,9 @@ export default class VerifyAddress extends Vue {
 }
 
 @include main.mobile-device {
+    .dashboard {
+        margin-top: 0;
+    }
     .content {
         padding: 12px;
         max-width: 100%;

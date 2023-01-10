@@ -377,7 +377,10 @@ export default class SimpleWallet extends Vue {
         max-width: calc(90% - 32px) !important;
     }
     .header-title {
-        font-size: 33px;
+        flex-direction: column;
+        span {
+            text-align: center;
+        }
     }
 }
 </style>

@@ -131,4 +131,13 @@ export default class Access extends Vue {
 .access_card {
     text-align: center;
 }
+
+@include main.mobile-device {
+    .header-title {
+        flex-direction: column;
+        span {
+            text-align: center;
+        }
+    }
+}
 </style>
