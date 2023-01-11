@@ -8,9 +8,8 @@
             </div>
             <router-link to="/verifyaddress/mnemonic" class="menu_option button_secondary">
                 <span>
-                    {{ $t('access.but_mnemonic') }}
+                    {{ $t('verifyAddress.but_mnemonic') }}
                 </span>
-                <!-- <v-icon>mdi-list-box-outline</v-icon> -->
             </router-link>
             <span class="disclamer">{{ $t('verifyAddress.alignment.bottom_desc1') }}</span>
         </div>
