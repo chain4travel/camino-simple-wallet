@@ -102,10 +102,10 @@
         "title": "Camino Address Verification for Presale Participants and Seed Investors",
         "confirm_address": "Verify address",
         "alignment": {
-            "top_desc1": "We're very excited to launch Camino, the blockchain solution for the travel industry, in a few weeks. However, before we go live and transfer your Camino tokens to your wallet, we need you to verify your wallet access again. This is a simple but necessary security measure which will only take one minute.",
+            "top_desc1": "We're very excited to launch Camino, the blockchain solution for the travel industry, in a few weeks. However, before we go live and transfer your Camino tokens to your wallet, you need you to verify your wallet access. This is a simple but necessary security measure which will only take one minute.",
             "top_desc2": "This additional security layer ensures that you still have access to the wallet created weeks or even months ago and ultimately to the funds once they are transferred to you.",
             "top_desc3": "To verify your address, please login with your key phrase by clicking the button below.",
-            "bottom_desc1": "Your Key Phrase will never be shared with Chain4Travel and team members will never ask you for your phrase.",
+            "bottom_desc1": "Please note: your key phrase will never be shared with Chain4Travel and team members will never ask you for your key phrase.",
             "second_top_desc1": "We're very excited to finally starting Camino, the blockchain solution for the travel industry, in a few weeks. However, before we go live and transfer your Camino tokens to your wallet, we need you to verify your wallet access again. This is a simple but necessary security measure which will only take one minute.",
             "second_top_desc2": "This additional security layer ensures that you still have access to the wallet created weeks or even months ago and ultimately to the funds once they are transferred to you. As soon as you verify the access, we can check the system and execute the successful transfer of your tokens. ",
             "second_top_desc3": "To verify your address, please validate your address with the P-Chain address in your SAFT and click the button below.",
